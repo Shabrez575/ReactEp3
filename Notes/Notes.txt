@@ -1,0 +1,164 @@
+JSX - 
+Link:-
+(https://chatgpt.com/share/91a9b79d-8415-4117-9170-8ab3755adf31)
+
+Babel -
+Link - https://babeljs.io/
+
+------------------ JSX ----------------------
+
+JSX (JavaScript XML) is a syntax extension for JavaScript used in React to describe what the UI should look like. It allows you to write HTML elements in JavaScript and place them in the DOM without using createElement and appendChild methods. JSX makes your code simpler and more readable by allowing you to write components using a syntax similar to HTML.
+
+Key Features of JSX
+HTML-like Syntax:
+JSX looks like HTML but with the full power of JavaScript. It allows you to write HTML elements directly within JavaScript code.
+Example:
+const element = <h1>Hello, world!</h1>;
+
+Embedding JavaScript Expressions:
+
+You can embed any JavaScript expression in JSX by wrapping it in curly braces {}.
+Example:
+const element = <h1>Hello, world!</h1>;
+// Compiles to:
+const element = React.createElement('h1', null, 'Hello, world!');
+
+JSX is an Expression:
+After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.
+Example:
+const element = <h1>Hello, world!</h1>;
+// Compiles to:
+const element = React.createElement('h1', null, 'Hello, world!');
+
+Attributes in JSX:
+JSX attributes are written in a camelCase format instead of HTML attribute names. For example, class becomes className.
+Example:
+const element = <div className="myClass">Content</div>;
+
+Why Use JSX?
+Readability and Maintainability: JSX syntax is closer to HTML, making it easier to visualize the structure of the UI.
+Component-Based Architecture: With JSX, you can create reusable components, each encapsulating its own structure, style, and behavior.
+Integration with JavaScript: Since JSX is just syntactic sugar for JavaScript, you can leverage the full power of JavaScript within your UI code.
+
+Example: Basic example of a React component using JSX:
+import React from 'react';
+
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+
+const App = () => {
+  return (
+    <div>
+      <Welcome name="Sara" />
+      <Welcome name="Cahal" />
+      <Welcome name="Edite" />
+    </div>
+  );
+};
+
+export default App;
+
+In this example:
+The Welcome component takes a name prop and renders it inside an <h1> element.
+The App component renders three Welcome components with different name props.
+
+Conclusion:
+JSX is a powerful tool in React that simplifies writing and understanding the structure of the UI. It seamlessly integrates HTML-like syntax with JavaScript, making it easier to build complex UIs using a component-based approach.
+
+------ How JSX Convert into Javascript Format --------------
+
+JSX is syntactic sugar for JavaScript that makes it easier to write and visualize the structure of React components. Under the hood, JSX is transformed into regular JavaScript function calls that React can understand. This transformation is handled by a compiler like Babel. Here's a detailed explanation of how JSX is converted into React code:
+
+### JSX to JavaScript Transformation
+
+When you write JSX, a compiler like Babel transforms it into `React.createElement` calls. Here’s a step-by-step example to illustrate this process:
+
+#### 1. Writing JSX
+
+Let's start with a simple JSX example:
+
+```jsx
+const element = <h1>Hello, world!</h1>;
+```
+
+#### 2. Compilation with Babel
+
+Babel transforms the JSX code into JavaScript. The JSX syntax is not natively understood by browsers, so it needs to be converted. The above JSX code gets transformed into:
+
+```javascript
+const element = React.createElement('h1', null, 'Hello, world!');
+```
+
+#### 3. React.createElement
+
+The `React.createElement` function is fundamental in React's API. It creates a React element, which is a plain JavaScript object representing a piece of the UI. Here’s the breakdown of the `React.createElement` function call:
+
+- The first argument is the type of the element (e.g., 'h1', 'div').
+- The second argument is the props object (attributes). `null` means there are no props for this element.
+- The third and subsequent arguments are the children of the element.
+
+In this case, `React.createElement('h1', null, 'Hello, world!')` creates a React element representing an `<h1>` tag with the text "Hello, world!".
+
+### Detailed Example
+
+Let's look at a more complex example involving props and nested elements:
+
+#### JSX Code
+
+```jsx
+const element = (
+  <div className="container">
+    <h1>Hello, {name}!</h1>
+    <p>This is a paragraph.</p>
+  </div>
+);
+```
+
+#### Compiled JavaScript Code
+
+Babel will transform the above JSX code into:
+
+```javascript
+const element = React.createElement(
+  'div',
+  { className: 'container' },
+  React.createElement('h1', null, `Hello, ${name}!`),
+  React.createElement('p', null, 'This is a paragraph.')
+);
+```
+
+Here’s the breakdown:
+
+- The outer `React.createElement` call creates a `div` element with a `className` prop set to "container".
+- The children of the `div` are another `React.createElement` call for the `h1` and `p` elements.
+- The `h1` element contains a JavaScript expression `Hello, ${name}!` which gets evaluated at runtime.
+- The `p` element simply contains text.
+
+### Babel Configuration
+
+To use JSX in a React project, you typically configure Babel with the appropriate presets and plugins. Here’s an example of a Babel configuration (`.babelrc` or `babel.config.js`):
+
+```json
+{
+  "presets": ["@babel/preset-env", "@babel/preset-react"]
+}
+```
+
+- `@babel/preset-env` compiles modern JavaScript to be compatible with older environments.
+- `@babel/preset-react` handles the transformation of JSX into JavaScript.
+
+### Conclusion
+
+The transformation of JSX into `React.createElement` calls allows React to create a virtual DOM representation of your UI. This process makes it easier for developers to write and maintain their UI code using a familiar, HTML-like syntax while leveraging the power of JavaScript. The transformed code is what React uses to efficiently update and render the UI.
+
+--------------------- React Element  ---------------------------
+
+-------------------- React Component --------------------------
+1 - Class Based Component (Old Way)
+2 - React Functional Component (New Way)
+
+React Functional Component (New Way):
+A function that return JSX code is a functional component.
+
+
